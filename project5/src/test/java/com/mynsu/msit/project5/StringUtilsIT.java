@@ -89,4 +89,48 @@ public class StringUtilsIT {
         assertEquals("hithere", result);
         assertEquals("hithere", util.getMyStr());
     }
+    /**
+     * Test Case 09: getMyStr should return the stored value
+     */
+    @org.junit.jupiter.api.Test
+    public void testGetMyStr_ShouldReturnStoredValue() {
+        StringUtils util = new StringUtils("xyz");
+        assertEquals("xyz", util.getMyStr());
+    }
+
+    /**
+     * Test Case 10: endsWithChar should return true when last character matches
+     */
+    @org.junit.jupiter.api.Test
+    public void testEndsWithChar_True() {
+        StringUtils util = new StringUtils("boat");
+        assertTrue(util.endsWithChar('t'));
+    }
+
+    /**
+     * Test Case 11: endsWithChar should return false when last character does not match
+     */
+    @org.junit.jupiter.api.Test
+    public void testEndsWithChar_False() {
+        StringUtils util = new StringUtils("boat");
+        assertFalse(util.endsWithChar('x'));
+    }
+
+    /**
+     * Test Case 12: returnCharAt should return correct character for valid index
+     */
+    @org.junit.jupiter.api.Test
+    public void testReturnCharAt_ValidIndex() {
+        StringUtils util = new StringUtils("xyz");
+        assertEquals('y', util.returnCharAt(1));
+    }
+
+    /**
+     * Test Case 13: returnCharAt should throw IndexOutOfBoundsException for negative index
+     */                                                       
+    @org.junit.jupiter.api.Test
+    public void testReturnCharAt_NegativeIndex_ShouldThrowIOOBE() {
+        StringUtils util = new StringUtils("xyz");
+        assertThrows(IndexOutOfBoundsException.class, () -> util.returnCharAt(-1)); // DEFECT 4
+    }
 }
